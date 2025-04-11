@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ConsulterProprietaireController">
+   <children>
+      <Button layoutX="21.0" layoutY="380.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="140.0" text="Button" />
+      <AnchorPane prefHeight="81.0" prefWidth="650.0" style="-fx-background-color: #E96151;">
+         <children>
+            <Label layoutX="241.0" layoutY="21.0" prefHeight="38.0" prefWidth="318.0" text="Ajouter une collection" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="26.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <TextField layoutX="21.0" layoutY="221.0" prefHeight="150.0" prefWidth="615.0" promptText="Ici vous pouvez ajouter une description" />
+      <Label layoutX="20.0" layoutY="195.0" text="Ajouter une description">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <TextField layoutX="20.0" layoutY="142.0" prefHeight="32.0" prefWidth="298.0" promptText="Title " />
+      <Label layoutX="20.0" layoutY="112.0" text="Ajouter un titre pour la collection">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="399.0" layoutY="112.0" text="Type de collection">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <MenuButton layoutX="399.0" layoutY="142.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="246.0" text="Type">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
+   </children>
+</AnchorPane>

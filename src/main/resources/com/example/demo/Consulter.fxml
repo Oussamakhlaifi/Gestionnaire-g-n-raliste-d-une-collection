@@ -3,20 +3,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="465.0" prefWidth="465.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.example.Controller">
+<AnchorPane prefHeight="465.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ConsulterController">
     <children>
         <VBox layoutX="20" layoutY="20" prefWidth="400" spacing="10">
             <TextField fx:id="searchField" promptText="Rechercher par titre..." />
 
-            <ComboBox fx:id="categoryComboBox">
-                <items>
 
-                </items>
-            </ComboBox>
 
             <HBox spacing="10">
                 <TextField fx:id="keywordField" promptText="Mot-clé" />
-                <TextField fx:id="authorField" promptText="Auteur" />
+                <TextField fx:id="authorField" promptText="Type (Timbre , Livre , BD)" />
             </HBox>
 
             <HBox spacing="10">
@@ -24,7 +20,7 @@
                 <TextField fx:id="maxPriceField" promptText="Prix max" />
             </HBox>
 
-            <Button fx:id="searchButton" onAction="#handleSearch" text="Rechercher" />
+            <Button  text="Rechercher" />
 
             <ListView fx:id="resultsListView" prefHeight="200" />
         </VBox>

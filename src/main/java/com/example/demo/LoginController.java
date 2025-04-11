@@ -3,6 +3,7 @@ package com.example.demo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,6 +37,29 @@ public class LoginController implements Initializable {
     @FXML
     private Button loginButton;
 
+    private String getUserRole(String email, String password) {
+        String role = null;
+
+        String query = "SELECT role FROM utilisateur WHERE email = ? AND mot_de_passe = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                role = rs.getString("role"); // Récupère le rôle de l'utilisateur
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return role;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File brandingFile = new File("images/Register.jpg");
@@ -53,12 +77,29 @@ public class LoginController implements Initializable {
         try {
             String email = emailField.getText();
             String password = passwordField.getText();
+
             if (email.isEmpty() || password.isEmpty()) {
                 loginMessageLabel.setText("Veuillez remplir tous les champs.");
                 return;
             }
-            if (validateLogin(email, password)) {
+
+            String role = getUserRole(email, password);
+            System.out.println("Rôle récupéré : " + role);// Méthode pour récupérer le rôle de l'utilisateur
+
+            if (role != null) {
                 loginMessageLabel.setText("Connexion réussie !");
+
+                // Charger la page en fonction du rôle
+                String page = role.equals("Propriétaire") ? "/com/example/demo/ConsulterProprietaire.fxml"
+                        : "/com/example/demo/Consulter.fxml";
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(page));
+                Parent root = loader.load();
+
+                Stage stage = (Stage) emailField.getScene().getWindow(); // Récupère la fenêtre actuelle
+                stage.setScene(new Scene(root)); // Change la scène
+                stage.show();
+
             } else {
                 loginMessageLabel.setText("Email ou mot de passe incorrect.");
             }
@@ -67,7 +108,6 @@ public class LoginController implements Initializable {
             loginMessageLabel.setText("Erreur de connexion.");
         }
     }
-
 
     private boolean validateLogin(String email, String password) {
         String query = "SELECT * FROM utilisateur WHERE email = ? AND mot_de_passe = ?";
