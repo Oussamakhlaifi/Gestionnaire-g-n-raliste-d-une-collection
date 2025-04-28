@@ -8,8 +8,6 @@
         <VBox layoutX="20" layoutY="20" prefWidth="400" spacing="10">
             <TextField fx:id="searchField" promptText="Rechercher par titre..." />
 
-
-
             <HBox spacing="10">
                 <TextField fx:id="keywordField" promptText="Mot-clé" />
                 <TextField fx:id="authorField" promptText="Type (Timbre , Livre , BD)" />
@@ -20,9 +18,10 @@
                 <TextField fx:id="maxPriceField" promptText="Prix max" />
             </HBox>
 
-            <Button  text="Rechercher" />
+            <Button fx:id="searchButton" text="Rechercher" />
 
             <ListView fx:id="resultsListView" prefHeight="200" />
         </VBox>
     </children>
 </AnchorPane>
+
