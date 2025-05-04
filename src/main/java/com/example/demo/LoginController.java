@@ -37,10 +37,8 @@ public class LoginController implements Initializable {
     @FXML
     private Button loginButton;
 
-    private String getUserRole(String email, String password) {
-        String role = null;
-
-        String query = "SELECT role FROM utilisateur WHERE email = ? AND mot_de_passe = ?";
+    private User getUser(String email, String password) {
+        String query = "SELECT nom, email, role FROM utilisateur WHERE email = ? AND mot_de_passe = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -50,15 +48,19 @@ public class LoginController implements Initializable {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                role = rs.getString("role"); // Récupère le rôle de l'utilisateur
+                String nom = rs.getString("nom");
+                String role = rs.getString("role");
+                String mail = rs.getString("email");
+                return new User(nom, mail, role);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return role;
+        return null;
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,8 +73,9 @@ public class LoginController implements Initializable {
         }
     }
 
-    @FXML
 
+
+    @FXML
     public void loginButtonAction(ActionEvent event) {
         try {
             String email = emailField.getText();
@@ -83,21 +86,23 @@ public class LoginController implements Initializable {
                 return;
             }
 
-            String role = getUserRole(email, password);
-            System.out.println("Rôle récupéré : " + role);// Méthode pour récupérer le rôle de l'utilisateur
+            User user = getUser(email, password);
 
-            if (role != null) {
+            if (user != null) {
                 loginMessageLabel.setText("Connexion réussie !");
 
-                // Charger la page en fonction du rôle
-                String page = role.equals("Propriétaire") ? "/com/example/demo/ConsulterProprietaire.fxml"
-                        : "/com/example/demo/Consulter.fxml";
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(page));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demo/Dashboard.fxml"));
                 Parent root = loader.load();
 
-                Stage stage = (Stage) emailField.getScene().getWindow(); // Récupère la fenêtre actuelle
-                stage.setScene(new Scene(root)); // Change la scène
+                Dashboard dashboardController = loader.getController();
+                dashboardController.setUserData(
+                        user.getNom(),
+                        user.getEmail(),
+                        java.time.LocalDateTime.now().toString()
+                );
+
+                Stage stage = (Stage) emailField.getScene().getWindow();
+                stage.setScene(new Scene(root));
                 stage.show();
 
             } else {
@@ -108,6 +113,7 @@ public class LoginController implements Initializable {
             loginMessageLabel.setText("Erreur de connexion.");
         }
     }
+
 
     private boolean validateLogin(String email, String password) {
         String query = "SELECT * FROM utilisateur WHERE email = ? AND mot_de_passe = ?";
