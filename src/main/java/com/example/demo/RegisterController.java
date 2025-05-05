@@ -98,6 +98,7 @@ public class RegisterController {
         alert.showAndWait();
     }
     // Méthode pour deriger vers la page login
+    @FXML
     private  void redirectToLogin(){
         try {
             javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("Login.fxml"));

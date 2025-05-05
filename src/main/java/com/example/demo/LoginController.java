@@ -91,19 +91,36 @@ public class LoginController implements Initializable {
             if (user != null) {
                 loginMessageLabel.setText("Connexion réussie !");
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demo/Dashboard.fxml"));
-                Parent root = loader.load();
+                String role = user.getRole(); // Assure-toi que `getRole()` existe dans la classe User
 
-                Dashboard dashboardController = loader.getController();
-                dashboardController.setUserData(
-                        user.getNom(),
-                        user.getEmail(),
-                        java.time.LocalDateTime.now().toString()
-                );
+                String fxmlPage;
+                FXMLLoader loader;
 
-                Stage stage = (Stage) emailField.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
+                if ("Propriétaire".equalsIgnoreCase(role)) {
+                    fxmlPage = "/com/example/demo/Dashboard.fxml";
+                    loader = new FXMLLoader(getClass().getResource(fxmlPage));
+                    Parent root = loader.load();
+                    Dashboard controller = loader.getController();
+                    controller.setUserData(user.getNom(), user.getEmail(), java.time.LocalDateTime.now().toString());
+
+                    Stage stage = (Stage) emailField.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+
+                } else if ("Consultant".equalsIgnoreCase(role)) {
+                    fxmlPage = "/com/example/demo/DashboardConsultant.fxml";
+                    loader = new FXMLLoader(getClass().getResource(fxmlPage));
+                    Parent root = loader.load();
+                    DashboardCansultant controller = loader.getController();
+                    controller.initializeDashboard(user.getNom(), user.getEmail(), java.time.LocalDateTime.now().toString());
+
+                    Stage stage = (Stage) emailField.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+
+                } else {
+                    loginMessageLabel.setText("Rôle inconnu. Accès refusé.");
+                }
 
             } else {
                 loginMessageLabel.setText("Email ou mot de passe incorrect.");

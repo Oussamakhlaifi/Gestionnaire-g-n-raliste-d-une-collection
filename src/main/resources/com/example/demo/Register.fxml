@@ -10,7 +10,7 @@
         <AnchorPane prefHeight="82.0" prefWidth="520.0" style="-fx-background-color: #E96151;">
             <children>
                 <ImageView fx:id="shieldimageview" fitHeight="42.0" fitWidth="69.0" layoutX="32.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-                <Label layoutX="130.0" layoutY="27.0" text=" User registration" textFill="WHITE">
+                <Label layoutX="214.0" layoutY="27.0" prefHeight="27.0" prefWidth="88.0" text="Register" textFill="WHITE">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -47,12 +47,19 @@
             </font>
         </Label>
         <PasswordField fx:id="confirmPasswordnameTextField" layoutX="92.0" layoutY="361.0" prefHeight="25.0" prefWidth="336.0" promptText="Confirm Password" />
-        <Button fx:id="RegisteerButton" layoutX="93.0" layoutY="407.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="26.0" prefWidth="336.0" style="-fx-background-color: #E96151;" text="Register" textFill="WHITE">
+        <Button fx:id="RegisteerButton" layoutX="92.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="26.0" prefWidth="336.0" style="-fx-background-color: #E96151;" text="Register" textFill="WHITE">
             <font>
                 <Font size="13.0" />
             </font>
         </Button>
-        <Button fx:id="CloseButton" layoutX="92.0" layoutY="449.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="336.0" style="-fx-background-color: #E96151;" text="Close" textFill="WHITE">
+        <Button fx:id="CloseButton" layoutX="92.0" layoutY="469.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="336.0" style="-fx-background-color: #E96151;" text="Close" textFill="WHITE">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Button>
+        <Button fx:id="RegisteerButton1" layoutX="92.0" layoutY="434.0" mnemonicParsing="false"
+                prefHeight="26.0" prefWidth="336.0" style="-fx-background-color: #E96151;"
+                text="Login" textFill="WHITE" onAction="#redirectToLogin">
             <font>
                 <Font size="13.0" />
             </font>

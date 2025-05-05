@@ -21,7 +21,7 @@
             <Button fx:id="searchButton" text="Rechercher" />
 
             <ListView fx:id="resultsListView" prefHeight="200" />
+         <Button fx:id="searchButton1" layoutX="10.0" layoutY="118.0" onAction="#redirectToMenu" prefHeight="44.0" prefWidth="107.0" text="Menu" />
         </VBox>
     </children>
 </AnchorPane>
-

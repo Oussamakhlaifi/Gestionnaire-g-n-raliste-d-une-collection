@@ -6,63 +6,60 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ConsulterProprietaireController">
    <children>
-      <Button layoutX="18.0" layoutY="426.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="140.0" text="Button" />
+      <Button layoutX="18.0" layoutY="426.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="140.0" text="Valider" />
+
       <AnchorPane prefHeight="81.0" prefWidth="650.0" style="-fx-background-color: #E96151;">
          <children>
-            <Label layoutX="241.0" layoutY="21.0" prefHeight="38.0" prefWidth="318.0" text="Ajouter une collection" textFill="WHITE">
+            <Label layoutX="241.0" layoutY="21.0" prefHeight="38.0" prefWidth="318.0" text="Ajouter un objet" textFill="WHITE">
                <font>
                   <Font name="System Italic" size="26.0" />
                </font>
             </Label>
-         </children></AnchorPane>
+         </children>
+      </AnchorPane>
+
       <TextField layoutX="20.0" layoutY="262.0" prefHeight="150.0" prefWidth="615.0" promptText="Ici vous pouvez ajouter une description" />
       <Label layoutX="20.0" layoutY="230.0" text="Ajouter une description">
-         <font>
-            <Font size="13.0" />
-         </font>
+         <font><Font size="13.0" /></font>
       </Label>
-      <TextField layoutX="18.0" layoutY="126.0" prefHeight="32.0" prefWidth="298.0" promptText="Title " />
-      <Label layoutX="20.0" layoutY="97.0" text="Ajouter un titre pour la collection">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="399.0" layoutY="97.0" text="Type de collection">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
-      <MenuButton layoutX="399.0" layoutY="126.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="246.0" text="Type">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Timbre" />
-          <MenuItem mnemonicParsing="false" text="Livre" />
-           <MenuItem mnemonicParsing="false" text="BD" />
 
-        </items>
-      </MenuButton>
-      <Label layoutX="20.0" layoutY="166.0" text="Prix">
-         <font>
-            <Font size="13.0" />
-         </font>
+      <TextField layoutX="18.0" layoutY="126.0" prefHeight="32.0" prefWidth="298.0" promptText="Titre" />
+      <Label layoutX="20.0" layoutY="97.0" text="Ajouter un titre pour la collection">
+         <font><Font size="13.0" /></font>
       </Label>
-      <TextField layoutX="18.0" layoutY="185.0" prefHeight="32.0" prefWidth="118.0" promptText="Title " />
-      <TextField layoutX="151.0" layoutY="185.0" prefHeight="32.0" prefWidth="118.0" promptText="Title " />
+
+      <Label layoutX="399.0" layoutY="97.0" text="Type de collection">
+         <font><Font size="13.0" /></font>
+      </Label>
+
+      <MenuButton layoutX="399.0" layoutY="126.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="246.0" text="Type">
+         <items>
+            <MenuItem text="Timbre" />
+            <MenuItem text="Livre" />
+            <MenuItem text="BD" />
+         </items>
+      </MenuButton>
+
+      <Label layoutX="20.0" layoutY="166.0" text="Prix">
+         <font><Font size="13.0" /></font>
+      </Label>
+      <TextField layoutX="18.0" layoutY="185.0" prefHeight="32.0" prefWidth="118.0" promptText="Prix" />
+
       <Label layoutX="156.0" layoutY="166.0" text="Cotation">
-         <font>
-            <Font size="13.0" />
-         </font>
+         <font><Font size="13.0" /></font>
+      </Label>
+      <TextField layoutX="151.0" layoutY="185.0" prefHeight="32.0" prefWidth="118.0" promptText="Cotation" />
+
+      <Label layoutX="284.0" layoutY="166.0" text="Date d'achat">
+         <font><Font size="13.0" /></font>
       </Label>
       <DatePicker layoutX="284.0" layoutY="185.0" prefHeight="32.0" prefWidth="135.0" />
+
+      <Label layoutX="444.0" layoutY="166.0" text="Date création">
+         <font><Font size="13.0" /></font>
+      </Label>
       <DatePicker layoutX="444.0" layoutY="185.0" prefHeight="32.0" prefWidth="135.0" />
-      <Label layoutX="284.0" layoutY="166.0" text="Date d'achat">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="444.0" layoutY="166.0" text="Date creation">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
+
+      <Button fx:id="menuButton" layoutX="167.0" layoutY="426.0" mnemonicParsing="false" onAction="#redirectToMenu" prefHeight="38.0" prefWidth="140.0" text="Menu" />
    </children>
 </AnchorPane>

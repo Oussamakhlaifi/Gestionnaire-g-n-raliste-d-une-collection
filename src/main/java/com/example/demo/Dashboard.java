@@ -6,11 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class Dashboard {
+    @FXML
+    private User connectedUser;
 
     @FXML
     private Label userNameLabel;
@@ -57,12 +60,12 @@ public class Dashboard {
 
         ajouterObjetButton.setOnAction(e -> {
             // Logique pour aller à la page "Ajouter un Objet"
-            System.out.println("Ajouter un objet cliqué !");
+            chargerPage("ConsulterProprietaire.fxml", ajouterCollectionButton);
         });
 
         consulterObjetButton.setOnAction(e -> {
             // Logique pour aller à la page "Consulter les Objets"
-            System.out.println("Consulter les objets cliqué !");
+            chargerPage("Consulter.fxml", ajouterCollectionButton);
         });
 
         logoutButton.setOnAction(e -> handleLogout());
@@ -79,4 +82,21 @@ public class Dashboard {
             e.printStackTrace();
         }
     }
-}
+    private void chargerPage(String fxml, Button boutonSource) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxml));
+            Stage stage = (Stage) boutonSource.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void setUser(User user) {
+        this.connectedUser = user;
+        System.out.println("Connecté en tant que : " + user.getNom());
+    }
+
+    }
+
+
